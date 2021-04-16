@@ -4,26 +4,45 @@
 	<title>Cartas</title>
 </head>
 <body>
+	<h1>Cartas</h1>
 	<section>
+		<img src="img/1.png" width="100" height="100">
+		<img src="img/2.png" width="100" height="100">
+		<img src="img/3.png" width="100" height="100">
+		<img src="img/4.png" width="100" height="100">
+		<img src="img/5.png" width="100" height="100">
+		<img src="img/6.png" width="100" height="100">
+		<img src="img/7.png" width="100" height="100">
+		<img src="img/8.png" width="100" height="100">
+		<img src="img/9.png" width="100" height="100">
+		<img src="img/10.png" width="100" height="100">
+		<img src="img/11.png" width="100" height="100">
+		<img src="img/12.png" width="100" height="100">
+		<img src="img/13.png" width="100" height="100">
+		
 		
 	</section>
+	<div cla>
+		
+	</div>
 
-	<section>
-		<table>
+	<section id="1">
+		<table id="tabla22">
 			
 		<tr>
-			<td>#</td>
-			<td>Cartas</td>
-			<td>Cantidad</td>
+			<th>#</th>
+			<th>Cartas</th>
+			<th>Cantidad</th>
 			
 		</tr>
 		</table>
 		
 	</section>
+	<section><button id="btn">boton</button></section>
 
-	<form>
-		<h1>FORMULARIO DE CONTACTO</h1>
-		<label>Nombre</label>
+	<form id="formulario">
+		<h3>Tabla</h3>
+		<label>Numero</label>
 		<input type="text" name="Nombre">
 <br>
 
@@ -36,13 +55,94 @@
 	
 	
 	
-	<input type="submit" value="Guardar">
+	<input type="submit" value="Guardar" id="enviar">
 		
 	</form>
 
 
 	<script type="text/javascript">
-		
+		/*function cargarTabla(json){
+
+	var url = "https://carlosreneas.github.io/endpoints/cartas.json";
+
+	fetch  (url)
+	    .then(response => response.json())
+		.then(data => generarTabla(data))
+	.catch(error => {});
+
+
+	}*/
+
+
+/*function generarTabla(json){
+
+	const tabla = document.getElementById("tabla");
+
+	json.cartas.forEach ( carta => {
+
+	const tr = document.createElement('tr');
+	const td# = document.createElement('td');
+	     tdTitulo.textContent = carta.numero;
+	     tr.appendChild(td#);
+	     const tdCartas = document.createElement('td');
+	     tdCartas.textContent = carta.carta;
+	     tr.appendChild(tdCartas);
+	     const tdFecha = document.createElement('td');
+	     tdCantidad.textContent = carta.cantidad;
+	     tr.appendChild(tdCantidad);
+         
+	  
+	     
+	     tabla.tBodies[0].appendChild(tr);
+	 });
+	
+}*/
+
+/*document.getElementById("btn").onclick = cargarTabla;*/
+
+$(document).ready(function llenar(){    
+    $('#enviar').click(function(){        
+        /*Captura de datos escrito en los inputs*/        
+        var num = document.getElementById("numero").value;
+        var car = document.getElementById("carta").value;
+
+        var insertar = document.getElementById("tabla").innerHTML= [num, car];
+        /*Guardando los datos en el LocalStorage*/
+        localStorage.setItem("Numero", num);
+        localStorage.setItem("Carta", car);
+        /*Limpiando los campos o inputs*/
+        document.getElementById("numero").value = "";
+        document.getElementById("carta").value = "";
+    });   
+});
+
+$(document).ready(function() {
+            $.getJSON('https://carlosreneas.github.io/endpoints/cartas.json', function(cartas) {
+                var cartas = "";
+                $.each(cartas.slice(0, 25), function(key, value) {
+                    cartas += '<tr>';
+                    cartas += '<td>' + value.numero+ '</td>';
+                    cartas += '<td>' + value.carta + '</td>';
+                    cartas += '<td>'  + '</td>';
+                    
+                    cartas += '<tr>';
+                });
+                $('#tabla22').append(cartas);
+            });
+        });
+
+function cargarTabla(json){
+
+	var url = "https://carlosreneas.github.io/endpoints/cartas.json";
+
+	fetch  (url)
+	    .then(response => response.json())
+		.then(data => llenar(data))
+	.catch(error => {});
+
+
+	}
+	ocument.getElementById("btn").onclick = cargarTabla;
 
 	</script>
 
